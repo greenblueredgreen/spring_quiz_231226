@@ -22,4 +22,7 @@ public interface RealEstateMapper {
 			@Param("area")int area, 
 			@Param("price")int price);
 	//@Param 안 "area"는 xml #{area}와 연결된다(매핑이 된다.).
+	
+	
+	public int insertRealEstate(RealEstate realEstate);
 }

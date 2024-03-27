@@ -31,4 +31,12 @@ public class RealEstateBO {
 	public List<RealEstate> getRealEstateListByAreaPrice(int area, int price) {
 		return realEstateMapper.selectRealEstateListByAreaPrice(area, price);
 	}
+	
+	
+	//input:RealEstate
+	//output : int
+	
+	public int addRealEstate(RealEstate realEstate) {
+		return realEstateMapper.insertRealEstate(realEstate);
+	}
 }
