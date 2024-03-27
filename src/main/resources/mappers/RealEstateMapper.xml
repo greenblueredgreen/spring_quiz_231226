@@ -42,4 +42,27 @@
 			`rentPrice` > #{rentPrice}
 			]]>
  	</select>
+ 	
+ 	<!-- 3강 1-3번 -->
+ 	
+ 	<select id = "selectRealEstateListByAreaPrice" resultType="com.quiz.lesson03.domain.RealEstate">
+ 		SELECT
+ 			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+			,`rentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			<![CDATA[
+			`type` = '매매'
+			AND `area` >= #{area}
+			AND `price` <= #{price}
+			]]>
+ 	</select>
  </mapper>

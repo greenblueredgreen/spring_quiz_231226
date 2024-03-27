@@ -25,4 +25,10 @@ public class RealEstateBO {
 	public List<RealEstate> getRealEstateListByRentPrice(int rentPrice) {
 		return realEstateMapper.selectRealEstateListByRentPrice(rentPrice);
 	}
+	
+	//input : area, price
+	// output : List<RealEstate>
+	public List<RealEstate> getRealEstateListByAreaPrice(int area, int price) {
+		return realEstateMapper.selectRealEstateListByAreaPrice(area, price);
+	}
 }
