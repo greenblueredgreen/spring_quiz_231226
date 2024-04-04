@@ -39,4 +39,11 @@ public class RealEstateBO {
 	public int addRealEstate(RealEstate realEstate) {
 		return realEstateMapper.insertRealEstate(realEstate);
 	}
+	
+	
+	// input: id, type, price (controller로부터 넘어온다.)
+	// output: int(성공한 행의 개수)
+	public int updataRealEstateById(int id, String type, int price) {
+		return realEstateMapper.updataRealEstateById(id, type, price);
+	}
 }

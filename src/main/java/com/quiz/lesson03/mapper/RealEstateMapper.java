@@ -25,4 +25,11 @@ public interface RealEstateMapper {
 	
 	
 	public int insertRealEstate(RealEstate realEstate);
+	
+	public int updataRealEstateById(
+			
+			//파라미터가 여러 개이기 때문에 Map으로 해야한다.
+			@Param("id") int id,
+			@Param("type") String type,
+			@Param("price") int price);
 }
