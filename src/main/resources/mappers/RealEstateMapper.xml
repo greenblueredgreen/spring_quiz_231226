@@ -99,4 +99,13 @@
 		WHERE
 			`id` = #{id}
 	</update>
+	
+	<!--  3강 4-1 delete -->
+	<delete id="deleteRealEstateById" parameterType="int">
+		DELETE 
+		FROM 
+			`real_estate`
+		WHERE 
+			`id` = #{id}
+	</delete>
  </mapper>

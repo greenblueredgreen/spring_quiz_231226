@@ -12,7 +12,7 @@ import com.quiz.lesson03.mapper.RealEstateMapper;
 public class RealEstateBO {
 	
 	@Autowired
-	private RealEstateMapper realEstateMapper;
+	private RealEstateMapper realEstateMapper; //변수는 소문자로
 	
 	// input : id
 	//output : RealEstate
@@ -45,5 +45,11 @@ public class RealEstateBO {
 	// output: int(성공한 행의 개수)
 	public int updataRealEstateById(int id, String type, int price) {
 		return realEstateMapper.updataRealEstateById(id, type, price);
+	}
+	
+	//input : int
+	//output : int
+	public int deleteRealEstateById(int id) { //필수라서 int id
+		return realEstateMapper.deleteRealEstateById(id);
 	}
 }

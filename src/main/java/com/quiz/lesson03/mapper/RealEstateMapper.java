@@ -29,7 +29,11 @@ public interface RealEstateMapper {
 	public int updataRealEstateById(
 			
 			//파라미터가 여러 개이기 때문에 Map으로 해야한다.
+			// @Param은 map으로 바꿔주는 어노테이션이다.
 			@Param("id") int id,
 			@Param("type") String type,
 			@Param("price") int price);
+	
+	//파라미터 하나라, Param할 필요가 없다.
+	public int deleteRealEstateById(int id);
 }

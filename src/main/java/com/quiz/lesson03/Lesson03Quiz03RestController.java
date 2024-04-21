@@ -24,7 +24,7 @@ public class Lesson03Quiz03RestController {
 		@RequestParam("id") int id,   //null이 아니기 때문에 int로 한다.
 		@RequestParam("type") String type, 
 		@RequestParam("price") int price) {
-		
+	
 		int rowCount = realEstateBO.updataRealEstateById(id, type, price);
 		return "수정 성공 : " + rowCount;  //HTML 로 응답
 	}
