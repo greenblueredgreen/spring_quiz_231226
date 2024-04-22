@@ -2,12 +2,14 @@ package com.quiz.lesson04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson04.bo.SellerBO;
+import com.quiz.lesson04.domain.Seller;
 
 @RequestMapping("/lesson04/quiz01")
 @Controller  //RestController로 하면 "lesson04/addSeller"이 글자가 그래도 출력된다.
@@ -47,8 +49,34 @@ public class Lesson04Quiz01Controller {
 		//DB insert
 		sellerBO.addSeller(nickname, profileImage, temperature);
 		
-		
 		// 성공 화면
 		return "lesson04/afterAddSeller"; //afterAddSeller jsp로 이동
+	}
+	
+	
+	//http://localhost:8080/lesson04/quiz01/seller-info-view
+	@GetMapping("/seller-info-view")
+	public String sellerInfoView(
+			@RequestParam(value="id", required=false) Integer id,
+			Model model
+			) {
+		//model은 springframework.ui로 import
+		
+		Seller seller= null;
+		
+		// DB SELECT
+		if(id==null) {
+			seller = sellerBO.getLatestSeller();  //Seller는 domain이다. 
+		} else {
+			seller = sellerBO.getSellerById(id);
+		}
+		
+		// MODEL
+		// model로 접근하기 위한 방법이다.
+		model.addAttribute("seller", seller);    
+		model.addAttribute("title", "판매자 정보");
+		
+		// 응답화면으로 이동
+		return "lesson04/sellerInfo";
 	}
 }
