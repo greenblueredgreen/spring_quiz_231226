@@ -140,4 +140,16 @@ public class Lesson01Quiz02RestController {
 		//500 Internal_Service_Error
 		return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);	
 	}	
+	
+	//http://localhost:8080/lesson01/quiz02/4
+	@RequestMapping("/4")
+	public ResponseEntity<Board> quiz02_4(){
+		Board board= new Board();
+		board.setTitle("가입인사 안드림");
+		board.setUser("강낭콩");
+		board.setContent("...");
+		
+		//500에러로 발생한다. 우리가 만든 에러
+		return new ResponseEntity<>(board, HttpStatus.INTERNAL_SERVER_ERROR);
+	}	
 }
