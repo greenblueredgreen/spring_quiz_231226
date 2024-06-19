@@ -3,9 +3,10 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <!-- dtd꼭 붙여넣어야한다. -->
+ <!-- html 제목 지을 때 꼭 뒤에 Mapper붙여야한다.  -->
  
  <mapper namespace="com.quiz.lesson04.mapper.SellerMapper">
- 	<insert id="insertSeller" parameterType="map">
+ 	<insert id="insertSeller" parameterType="map">  <!-- map으로 내려온다.  -->
  		INSERT INTO `seller`
  		(
  			`nickname`,

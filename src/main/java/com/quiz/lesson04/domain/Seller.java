@@ -1,14 +1,15 @@
 package com.quiz.lesson04.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Seller {
+	
 	private int id;
 	private String nickname;
 	private String profileImage;
 	private double temperature;
-	private Date createdAt;
-	private Date updatedAt;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	public int getId() {
 		return id;
@@ -34,18 +35,16 @@ public class Seller {
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-
 }

@@ -18,27 +18,32 @@ public class Lesson04Quiz01Controller {
 	//bo객체 만들기
 	@Autowired
 	private SellerBO sellerBO;
-	
-	
-	// 판매자 추가 jsp 만들기
+
+	// 판매자 추가하는 화면 
+	// get인지 post인지 명확히 해주는 것이 좋다. 
 	//http://localhost:8080/lesson04/quiz01/add-seller-view
-	@GetMapping("/add-seller-view")
+	@GetMapping("/add-seller-view")    //ResponseBody가 없다. 
 	public String addSellerView() {
+		//파라미터 없음 
+		
+		//templates의 lesson04의 addSeller.html로 이동한다. (view의 경로)
 		return "lesson04/addSeller"; //jsp로 반환(이동)
 	}
 	
 	
-
+	
+	//판매자 DB에 저장 => 성공화면! 으로 이동
 	//http://localhost:8080/lesson04/quiz01/add-seller
-	//post방식
+	//POST 방식 (GET요청으로 받을 수 없다.)
+	//postmapping은 직접 이 링크로 접근이 불가능하다.
 	//add-seller(jsp)로 맵핑을 해야한다.
 	//action="/lesson04/quiz01/add-seller"
 	@PostMapping("/add-seller")
-	// postmapping은 직접 이 링크로 접근이 불가능하다.
-	// 위에를 통해서 들어가야한다.
 	public String addSeller(
+			//addSeller.html의 name= 과 똑같아야한다. 
 			@RequestParam("nickname") String nickname,
 			//nickname 만 null값 불가라서 nickname만 필수파람 지정을 해준다.
+			
 			@RequestParam(value="profileImage", required = false) String profileImage,
 			// 나머지는 null값 허용이라 이런식으로 설정해준다.
 			@RequestParam(value="temperature", defaultValue="36.5") double temperature
@@ -49,14 +54,25 @@ public class Lesson04Quiz01Controller {
 		//DB insert
 		sellerBO.addSeller(nickname, profileImage, temperature);
 		
-		// 성공 화면
-		return "lesson04/afterAddSeller"; //afterAddSeller jsp로 이동
+		// 성공 화면으로 이동
+		return "lesson04/afterAddSeller"; 
+		// 이제는 html로 이동!
+		//afterAddSeller jsp로 이동
 	}
 	
 	
+	
+	// 방금 가입한 판매자 1명의 화면 (끝 - view)
 	//http://localhost:8080/lesson04/quiz01/seller-info-view
 	@GetMapping("/seller-info-view")
 	public String sellerInfoView(
+			
+			//데이터 조회
+			//Seller seller = sellerBO.getLatestSeller();
+			
+			// model에 데이터를 담아둔다. 
+			
+	
 			@RequestParam(value="id", required=false) Integer id,
 			Model model
 			) {
@@ -76,7 +92,10 @@ public class Lesson04Quiz01Controller {
 		model.addAttribute("seller", seller);    
 		model.addAttribute("title", "판매자 정보");
 		
-		// 응답화면으로 이동
+		
+		
+		// 응답화면
+		// 화면에 뿌리기!
 		return "lesson04/sellerInfo";
 	}
 }
