@@ -17,7 +17,7 @@ public interface SellerMapper {
 			@Param("profileImage") String profileImage, 
 			@Param("temperature") double temperature);
 	
-	//get을 select로 바꿔준다. 
+	//get을 select로 바꿔준다. (조회일 때)
 	public Seller selectLatestSeller();
 	
 	public Seller selectSellerById(int id);

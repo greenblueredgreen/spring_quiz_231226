@@ -64,38 +64,74 @@ public class Lesson04Quiz01Controller {
 	
 	// 방금 가입한 판매자 1명의 화면 (끝 - view)
 	//http://localhost:8080/lesson04/quiz01/seller-info-view
+	//http://localhost:8080/lesson04/quiz01/seller-info-view?id=1
 	@GetMapping("/seller-info-view")
 	public String sellerInfoView(
-			
-			//데이터 조회
-			//Seller seller = sellerBO.getLatestSeller();
-			
-			// model에 데이터를 담아둔다. 
-			
-	
 			@RequestParam(value="id", required=false) Integer id,
-			Model model
+			Model model   //model은 springframework.ui로 import
 			) {
-		//model은 springframework.ui로 import
 		
 		Seller seller= null;
 		
 		// DB SELECT
+		// 데이터 조회
 		if(id==null) {
-			seller = sellerBO.getLatestSeller();  //Seller는 domain이다. 
+			seller = sellerBO.getLatestSeller(); //input이 없는 함수 
 		} else {
-			seller = sellerBO.getSellerById(id);
+			seller = sellerBO.getSellerById(id); 
+			//id를 파라미터로 받은 함수 
+			//id에 해당하는 걸 조회
 		}
 		
-		// MODEL
+
+		// MODEL에 데이터 담기 
 		// model로 접근하기 위한 방법이다.
-		model.addAttribute("seller", seller);    
-		model.addAttribute("title", "판매자 정보");
+		model.addAttribute("seller", seller);    //위의 seller변수를 "seller"에 넣는다.
+		model.addAttribute("title", "판매자 정보"); // "판매자 정보를 "title" 에 넣는다.
 		
 		
 		
 		// 응답화면
 		// 화면에 뿌리기!
 		return "lesson04/sellerInfo";
+		
+		
+		
+		// 방금 가입한 판매자 1명의 화면 (끝 - view)
+		//http://localhost:8080/lesson04/quiz01/seller-info-view
+		//@GetMapping("/seller-info-view")
+		//public String sellerInfoView(Model model){
+		
+		//데이터 조회
+		//Seller seller = sellerBO.getLatestSeller();
+		
+		// model에 데이터 담기
+		// model.addAttribute("seller", seller);
+		// model.addAttrivute("title", "판매자 정보");
+		
+		// 화면에 뿌리기!
+		//		return "lesson04/sellerInfo";
+		// }
+		
+		
+		}
+	
+	//http://localhost:8080/lesson04/quiz01/seller-info-view?id=1
+	public String addSeller1(Model model,
+			@RequestParam(value = "id", required=false) Integer id) {
+		
+		// 데이터 조회
+		Seller seller = null;
+		
+		if (id == null) {
+			sellerBO.getLatestSeller();  //원래 하던 것처럼 데이터 조회
+		} else{
+			sellerBO.getSellerById(id); // id에 해당하는 걸로 데이터 조회
+		}
+		model.addAttribute("seller", seller);
+		model.addAttribute("title", "판매자 정보");
+		
+		return "lesson04/sellerInfo";
+	
 	}
 }

@@ -28,7 +28,10 @@ public class SellerBO {
 		return sellerMapper.selectLatestSeller();
 	}
 	
+	
 	// id를 parameter로 받는 메소드
+	// input : id
+	// output : Seller 
 	public Seller getSellerById(int id) {
 		return sellerMapper.selectSellerById(id);
 	}
