@@ -20,5 +20,6 @@ public interface SellerMapper {
 	//get을 select로 바꿔준다. (조회일 때)
 	public Seller selectLatestSeller();
 	
+	//파람어노테이션 안붙여도 된다. 하나이기 때문에 안붙임
 	public Seller selectSellerById(int id);
 }

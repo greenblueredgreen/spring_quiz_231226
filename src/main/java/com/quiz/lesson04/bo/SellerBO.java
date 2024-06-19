@@ -31,8 +31,9 @@ public class SellerBO {
 	
 	// id를 parameter로 받는 메소드
 	// input : id
-	// output : Seller 
+	// output : Seller or null (채워져있거나 null이거나)
 	public Seller getSellerById(int id) {
-		return sellerMapper.selectSellerById(id);
+		return sellerMapper.selectSellerById(id);  
+		//controller에게 return 
 	}
 }

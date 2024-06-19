@@ -39,7 +39,7 @@
 		LIMIT 1
  	</select>
  	
- 	
+ 	<!--  select는 resultType 반드시 있어야한다.  -->
  	<select id="selectSellerById" parameterType="int" resultType="com.quiz.lesson04.domain.Seller">
  		SELECT 
  			`id`,
@@ -51,6 +51,6 @@
 		FROM
 			`seller`
 		WHERE
-			`id` = #{id}
+			`id` = #{id}  <!-- mybatis 문법 -->
  	</select>
  </mapper>

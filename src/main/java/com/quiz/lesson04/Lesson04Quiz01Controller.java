@@ -89,8 +89,6 @@ public class Lesson04Quiz01Controller {
 		model.addAttribute("seller", seller);    //위의 seller변수를 "seller"에 넣는다.
 		model.addAttribute("title", "판매자 정보"); // "판매자 정보를 "title" 에 넣는다.
 		
-		
-		
 		// 응답화면
 		// 화면에 뿌리기!
 		return "lesson04/sellerInfo";
@@ -119,14 +117,15 @@ public class Lesson04Quiz01Controller {
 	//http://localhost:8080/lesson04/quiz01/seller-info-view?id=1
 	public String addSeller1(Model model,
 			@RequestParam(value = "id", required=false) Integer id) {
+		// null이거나 아니거나,  required=false
 		
 		// 데이터 조회
-		Seller seller = null;
+		Seller seller = null;  //미리 선언해놓기 -> if안에다가 선언 시, 변수 사라짐.(지역변수)
 		
 		if (id == null) {
-			sellerBO.getLatestSeller();  //원래 하던 것처럼 데이터 조회
+			seller = sellerBO.getLatestSeller();  //원래 하던 것처럼 데이터 조회
 		} else{
-			sellerBO.getSellerById(id); // id에 해당하는 걸로 데이터 조회
+			seller = sellerBO.getSellerById(id); // id에 해당하는 걸로 데이터 조회
 		}
 		model.addAttribute("seller", seller);
 		model.addAttribute("title", "판매자 정보");
