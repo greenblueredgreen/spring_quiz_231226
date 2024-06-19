@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import com.quiz.lesson02.domain.Store;
 import com.quiz.lesson02.mapper.StoreMapper;
 
-@Service
+@Service //spring bean
 public class StoreBO {
 	
+	
+	//DI // BO에 주입하는 방식
 	@Autowired
 	private StoreMapper storeMapper;
 	

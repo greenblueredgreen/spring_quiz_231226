@@ -10,7 +10,7 @@ import com.quiz.lesson02.bo.StoreBO;
 import com.quiz.lesson02.domain.Store;
 
 
-@RestController // @Controller + @ResponseBody
+@RestController // @Controller + @ResponseBody //spring bean으로 등록
 public class Lesson02QuizRestController {
 	
 	@Autowired
@@ -19,6 +19,6 @@ public class Lesson02QuizRestController {
 	//http://localhost:8080/lesson02/quiz01
 	@RequestMapping("/lesson02/quiz01")
 	public List<Store> quiz01(){
-		return storeBO.getStoreList(); //json
+		return storeBO.getStoreList(); //json String
 	}
 }
