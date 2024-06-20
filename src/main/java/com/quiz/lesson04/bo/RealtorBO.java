@@ -14,6 +14,7 @@ public class RealtorBO {
 	
 	public void addRealtor(Realtor realtor) {
 		realtorMapper.insertRealtor(realtor);
+		//void타입이므로 return 없다. 
 	}
 	
 	public Realtor getRealtorById(int id) {

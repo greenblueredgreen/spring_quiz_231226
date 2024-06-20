@@ -5,6 +5,7 @@
  <mapper namespace="com.quiz.lesson04.mapper.RealtorMapper">
  	<insert id="insertRealtor" parameterType="com.quiz.lesson04.domain.Realtor"
  		useGeneratedKeys="true" keyProperty="id">
+ 		<!--  데이터 삽입 sql -->
  		INSERT INTO `realtor`
  		(
  			`office`,
@@ -25,7 +26,9 @@
  		)
  	</insert>
  	
+ 	
  	<select id="selectRealtorById" parameterType="com.quiz.lesson04.domain.Realtor">
+ 		<!-- 데이터 선택 SQL -->
  		SELECT 
  			`id`,
  			`office`,

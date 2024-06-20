@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h1>공인 중개사 정보</h1>
+		
+		<table class="table">
+			<tr>
+				<th>id</th>
+				<td th:text="${realtor.id}"></td>
+			</tr>
+			<tr>
+				<th>상호명</th>
+				<td th:text="${realtor.office}" ></td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td th:text="${realtor.phoneNumber}"></td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td th:text="${realtor.address}"></td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td th:text="${realtor.grade}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
