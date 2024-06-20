@@ -1,5 +1,6 @@
 package com.quiz.lesson04.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Realtor {
@@ -9,8 +10,8 @@ public class Realtor {
 	private String phoneNumber;
 	private String address;
 	private String grade;
-	private Date createdAt;
-	private Date updatedAt;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	public int getId() {
 		return id;
@@ -42,17 +43,16 @@ public class Realtor {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-	
+	}	
 }

@@ -5,9 +5,12 @@
  <mapper namespace="com.quiz.lesson04.mapper.RealtorMapper">
  	<insert id="insertRealtor" parameterType="com.quiz.lesson04.domain.Realtor"
  		useGeneratedKeys="true" keyProperty="id">
+ 		<!-- 방금 삽입된 ID 가져오는 구문 -->
+ 		
  		<!--  데이터 삽입 sql -->
  		INSERT INTO `realtor`
  		(
+ 			<!-- INSERT이므로 ID는 넣지 않는다.  -->
  			`office`,
 			`phoneNumber`,
 			`address`,
@@ -26,9 +29,10 @@
  		)
  	</insert>
  	
- 	
+ 	<!-- 파라미터 타입 int => public Realtor selectRealtorById(int id);  -->
  	<select id="selectRealtorById" parameterType="com.quiz.lesson04.domain.Realtor">
  		<!-- 데이터 선택 SQL -->
+ 		<!-- select이기 때문에 id 넣기 -->
  		SELECT 
  			`id`,
  			`office`,
