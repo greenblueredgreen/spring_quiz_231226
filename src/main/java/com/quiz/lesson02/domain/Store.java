@@ -61,4 +61,3 @@ public class Store {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-}
