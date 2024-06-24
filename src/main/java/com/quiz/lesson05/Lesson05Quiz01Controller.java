@@ -89,7 +89,7 @@ public class Lesson05Quiz01Controller {
 	}
 	
 	//http://localhost:8080/lesson05/quiz04
-	@GetMapping("/lesson05/quiz04")
+	@GetMapping("/quiz04")
 	public String quiz04(Model model) {
 		List<Member> members = new ArrayList<>();
 

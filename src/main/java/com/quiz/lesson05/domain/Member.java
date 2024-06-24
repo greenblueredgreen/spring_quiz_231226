@@ -1,24 +1,26 @@
 package com.quiz.lesson05.domain;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Member {
 	
-	//member.setName("유비");
-//	member.setPhoneNumber("010-1234-5678");
-//	member.setEmail("youbee@gmail.com");
-//	member.setNationality("삼국시대 촉한");
-//	member.setIntroduce("저는 촉의 군주 유비입니다. 삼국통일을 위해 열심히 일하겠습니다.");
-//	member.setBirth(LocalDate.of(161, 7, 9));
-//	members.add(member);
+	//  member.setName("유비");
+	//	member.setPhoneNumber("010-1234-5678");
+	//	member.setEmail("youbee@gmail.com");
+	//	member.setNationality("삼국시대 촉한");
+	//	member.setIntroduce("저는 촉의 군주 유비입니다. 삼국통일을 위해 열심히 일하겠습니다.");
+	//	member.setBirth(LocalDate.of(161, 7, 9));
+	//	members.add(member);
 	
 	private String name;
 	private String phoneNumber;
 	private String email;
 	private String nationality;
 	private String introduce;
-	private LocalDateTime birth;
+	private LocalDate birth;
+	
 	public String getName() {
 		return name;
 	}
@@ -49,10 +51,10 @@ public class Member {
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public LocalDateTime getBirth() {
+	public LocalDate getBirth() {
 		return birth;
 	}
-	public void setBirth(LocalDateTime birth) {
+	public void setBirth(LocalDate birth) {
 		this.birth = birth;
 	}
 }
