@@ -27,7 +27,8 @@
 			,`microDust`
 			,`windSpeed`
 			,`createdAt`
-			, `updatedAt`)
+			, `updatedAt`
+		)
  		VALUES
  		(
  			#{date}

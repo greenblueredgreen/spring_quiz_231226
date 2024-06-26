@@ -1,17 +1,16 @@
 package com.quiz.weather_history;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.quiz.lesson05.domain.Member;
 import com.quiz.weather_history.bo.WeatherHistoryBO;
 import com.quiz.weather_history.domain.WeatherHistory;
 
@@ -38,7 +37,6 @@ public class WeatherHistoryController {
 		return "weather_history/weatherList";
 	}
 	
-	
 	//http://localhost:8080/weather-history/add-weather-view
 	//날씨 추가 화면 view(보내는 기능 없음)
 	//보내는 것이 아니라 화면만 보여지는 것이다.
@@ -54,14 +52,25 @@ public class WeatherHistoryController {
 	//insert기능은 무조건 post이다.
 	@PostMapping("/add-weather")
 	public String addWeather(
-			@ModelAttribute
-			WeatherHistory weatherHistory,
-			Model model) {
+			//@ModelAttribute
+			//WeatherHistory weatherHistory,
+			//@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+			//String, LocalDate로 db에 넣어도 잘 들어가진다.
+			@RequestParam("date") String date, //LocalDate여도 된다.
+			@RequestParam("weather") String weather,
+			@RequestParam("microDust") String microDust,
+			@RequestParam("temperatures") double temperatures,
+			@RequestParam("precipitation") double precipitation,
+			@RequestParam("windSpeed") double windSpeed
+			//HTTPServletResponse response
+			) {
 
-		weatherHistoryBO.addWeatherHistory(weatherHistory);
-		model.addAttribute("weatherHistory", weatherHistory);
+		//db insert
+		weatherHistoryBO.addWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
 		
-		return "weather_history/weaterList";
+		// redirect => 목록 화면으로 보낸다.		
+		// response.sendRedirect("/...")
+		return "redirect:/weather-history/weather-list-view";
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.weather_history.domain.WeatherHistory;
 import com.quiz.weather_history.mapper.WeatherHistoryMapper;
@@ -22,8 +23,24 @@ public class WeatherHistoryBO{
 		return weatherHistoryMapper.selectWeatherhistoryList();
 	}
 	
-	//insert
-	public void addWeatherHistory(WeatherHistory weatherHistory) {
-		weatherHistoryMapper.insertWeatherHistory(weatherHistory);
+	//insert 
+	// return x
+	public void addWeatherHistory(
+			String date,
+			String weather,
+			String microDust,
+			double temperatures,
+			double precipitation,
+			double windSpeed
+			) {
+		
+		//void이기 때문에 호출만 하고 끝난다.
+		weatherHistoryMapper.insertWeatherHistory(
+				date, 
+				weather, 
+				microDust, 
+				temperatures, 
+				precipitation, 
+				windSpeed);
 	}
 }
