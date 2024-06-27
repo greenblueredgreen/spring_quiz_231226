@@ -11,6 +11,8 @@
 <body>
 	<div class="container">
 		<h1>즐겨 찾기 목록</h1>
+		<!--  [[${bookmarkList}]]-->
+		
 		<table class="table">
 			<thead>
 				<tr>
@@ -20,10 +22,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>No.</td>
-					<td>이름</td>
-					<td>주소</td>
+				<tr th:each="bookmark : ${bookmarkList}">
+					<td th:text="${bookmark.id}"></td>
+					<td th:text="${bookmark.name}">이름</td>
+					<td>
+						<a th:href="${bookmark.url}" th:text="${bookmark.url}"></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

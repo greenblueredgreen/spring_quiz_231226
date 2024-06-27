@@ -14,55 +14,70 @@
 		<br>
 		<div class="form-group">
 			<label for="title"><b>제목</b></label>
-            <input type="text" id="title" name="title" class="form-control">
+            <input type="text" id="name" name="name" class="form-control">
 		</div>
 		<div class="form-group">
 			<label for="link"><b>주소</b></label>
-            <input type="text" id="link" name="link" class="form-control">
+            <input type="text" id="url" name="url" class="form-control">
 		</div>
-		<button id="joinBtn" class="btn btn-info col-12">추가</button>
+		<button id="addBtn" class="btn btn-success col-12">추가</button>
 	</div>
 	
 	<script>
 		$(document).ready(function(){
-			$("#joinBtn").on('click', function(){
-				// alert("클릭");
+			//추가 버튼
+			//이벤트 - click
+			$("#addBtn").on('click', function(){
+				//alert("클릭");
 				
-				let title = $("#title").val();
-				if(title.length < 1){
-					alert("제목을 입력하시오");
-					return;
+				//validation
+				let name = $("#name").val().trim();
+				if(!name){
+					alert("사이트명을 입력하시오");
+					return;  //form은 return false;
 				}
 				
-				let link = $("#link").val().trim();
-				if(link == ""){
+				let url = $("#url").val().trim();
+				if(!url){
 					alert("주소 입력하시오");
 					return;
 				}
 				
-				console.log(title);
-				console.log(link);
+				//http도 아니고 https도 아니면 그때 alert을 띄우겠다.
+				if((url.startsWith("http://") ==  false) && (url.startsWith("https://") == false)){
+					alert("주소 형식이 잘못되었습니다");
+					return;
+				}
 				
-				//ajax 통신 => 서버에 요청
+				console.log(name);
+				console.log(url);
+				
+				//서버에 전송하기
+				//브라우저가 하던 일을 내가 하는 것이다.
+				//AJAX 통신 => 서버에 요청
 				$.ajax({
 					//request
-					type : "POST",
-					url : "/lesson06/quiz01/add-website"
-					, data : {"title" : title, "link" : link}
-					, success : function(data){
-						
+					type : "POST" //메소드방식(길 때는 post)
+					, url : "/lesson06/quiz01/add-website" //어느 주소로 보낼 것인가.
+					, data : {"name" : name, "url" : url} //파라미터 - 어떤 데이터를 보낼 것인지 // json방식
+				
+					//response
+					//callback함수 : 부르면 다시 원래 자리로 돌아온다.
+					, success : function(data){ //ajax의 응답은 항상 String => 관례적으로 data로 쓰인다.
+						//data : String
 						if(data=="성공"){
+							// 목록 화면으로 이동 - Get메소드 요청
 							location.href="/lesson06/quiz01/list-website-view"
 						}
 					}
+				
+					//에러일 경우
 					, error:function(xhr, status, error){
-						alert(xhr);
-						alert(status);
-						alert(error);
+						alert("데이터를 추가하는데 실패했습니다.");
 					}
-				});
-			});
-		});
+				}); // -- ajax함수
+			}); // -- 추가버튼 이벤트 끝
+		}); // --ready끝
 	</script>
 </body>
 </html>
