@@ -63,9 +63,15 @@
 				
 					//response
 					//callback함수 : 부르면 다시 원래 자리로 돌아온다.
+					//data : String
 					, success : function(data){ //ajax의 응답은 항상 String => 관례적으로 data로 쓰인다.
-						//data : String
-						if(data=="성공"){
+						// data : json String => jquery ajax함수가 parsing => js dictionary
+						// {"code" : 200, "result" : "성공"} => 객체 상태로 넘어간다. Object형태로 내려온다.
+						// 데이터 변환을 해줘서 편하게 사용가능
+						// alert(data.result);
+						
+						//키값"result"로 접근
+						if(data.result=="성공"){
 							// 목록 화면으로 이동 - Get메소드 요청
 							location.href="/lesson06/quiz01/list-website-view"
 						}

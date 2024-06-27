@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +49,7 @@ public class Lesson06Quiz01Controller {
 	//즐겨찾기 추가하는 로직
 	@ResponseBody //필수
 	@PostMapping("/add-website")
-	public String addWebSite(
+	public Map<String, Object> addWebSite(
 			@RequestParam("name") String name,
 			@RequestParam("url") String url
 			) {
@@ -57,6 +59,10 @@ public class Lesson06Quiz01Controller {
 		
 		// ajax응답
 		// "성공"
-		return "성공"; //ajax로 돌아간다.
+		// {"code" : 200, "result" : "성공"}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
+		return result; //ajax로 돌아간다. -> json String으로 응답값이 내려간다.
 	}
 }
