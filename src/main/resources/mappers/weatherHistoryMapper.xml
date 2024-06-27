@@ -16,8 +16,8 @@
  	 		`weather_history`
  	</select>
  	
- 	
- 	<insert id="insertWeatherHistory" parameterType="com.quiz.weather_history.domain.WeatherHistory">
+ 	<!-- 여러 파라미터 타입으로 들어오니 map으로 들어온다. -->
+ 	<insert id="insertWeatherHistory" parameterType="map">
  		INSERT INTO `weather_history`
  		(	
  			`date`

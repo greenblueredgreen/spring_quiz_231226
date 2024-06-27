@@ -20,10 +20,49 @@
 			<label for="link"><b>주소</b></label>
             <input type="text" id="link" name="link" class="form-control">
 		</div>
-		<button class="btn btn-info col-12">추가</button>
+		<button id="joinBtn" class="btn btn-info col-12">추가</button>
 	</div>
 	
 	<script>
+		$(document).ready(function(){
+			$("#joinBtn").on('click', function(){
+				// alert("클릭");
+				
+				let title = $("#title").val();
+				if(title.length < 1){
+					alert("제목을 입력하시오");
+					return;
+				}
+				
+				let link = $("#link").val().trim();
+				if(link == ""){
+					alert("주소 입력하시오");
+					return;
+				}
+				
+				console.log(title);
+				console.log(link);
+				
+				//ajax 통신 => 서버에 요청
+				$.ajax({
+					//request
+					type : "POST",
+					url : "/lesson06/quiz01/add-website"
+					, data : {"title" : title, "link" : link}
+					, success : function(data){
+						
+						if(data=="성공"){
+							location.href="/lesson06/quiz01/list-website-view"
+						}
+					}
+					, error:function(xhr, status, error){
+						alert(xhr);
+						alert(status);
+						alert(error);
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>
