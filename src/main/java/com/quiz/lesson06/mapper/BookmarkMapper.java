@@ -15,4 +15,12 @@ public interface BookmarkMapper {
 	
 	//insert
 	public void insertBookmark(@Param("name") String name, @Param("url") String url);
+	
+	// input : url
+	// output : List<Bookmark> url 중복 여러개 일 수 있어서 List
+	public List<Bookmark> selectBookmarkListByUrl(String url);
+	// 중복 x : []
+	// 중복 o : [a,a]
+	
+	public int deleteBookmarkById(int id);
 }

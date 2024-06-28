@@ -15,15 +15,16 @@
 		<div class="form-group">
 			<label for="name">제목</label>
 			<input type="text" id="name" class="form-control">
-			<small id="nameStatusArea"></small>
 			
-			<label for="url">링크</label>
+				<label for="url">URL 주소</label>
 				<div class="d-flex">
 					<input type="text" id="url" class="form-control col-10 p">
-					<button type="button" class="btn btn-warning" id="nameCheckBtn">중복확인</button>
+					<button type="button" class="btn btn-warning" id="duplicationBtn">중복확인</button>
 				</div>
 			
-			<small id="urlStatusArea"></small>
+				<!-- d-none은 안보이게 해준다. 이걸 클래스로 제어 -->
+				<small id="duplicationText" class="text-danger d-none">중복된 URL입니다.</small>
+				<small id="availableText" class="text-success d-none">저장가능한 URL입니다.</small>
 		</div>
 		
 		<input type="button" id="addBtn" class="btn btn-info" value="추가하기"></input>
@@ -33,16 +34,39 @@
 		$(document).ready(function(){
 			
 			//중복확인 버튼 urlCheckBtn
-			$("#urlCheckBtn").on('click', function(){
+			$("#duplicationBtn").on('click', function(){
 				//alert("중복확인");
-				//nameStatusArea 초기화
-				$("#urlCheckBtn").empty();
-				
 				let url = $("#url").val().trim();
+				
 				if(!url){
-					$("#urlStatusArea").append('<span class="text-danger">링크가 비어있습니다.</span>');
+					alert("주소를 입력하시오");
 					return;
-				}
+				} 
+				
+				// AJAX - DB url 확인
+				$.ajax({
+					//request
+					type:"POST"
+					, url:"/lesson06/quiz02/is-duplication-url"
+					, data : {"url" : url}
+				
+					//response
+					, success:function(data){
+						//{"code" : 200, "is_duplication" : true} => 중복
+						if(data.is_duplication){  //중복
+							// d-none 클래스 제거 => 보이게 해준다.
+							// availText는 안보이게
+							$("#duplicationText").removeClass("d-none");
+							$("#availableText").addClass("d-none");
+						} else{ //중복 아님 => 사용가능
+							$("#duplicationText").addClass("d-none");
+							$("#availableText").removeClass("d-none");
+						}
+					}
+					, error:function(error){
+						alert("중복확인 실패했습니다.");
+					}
+				});
 			});
 		});
 	</script>
