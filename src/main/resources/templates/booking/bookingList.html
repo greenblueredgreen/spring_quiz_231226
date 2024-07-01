@@ -34,18 +34,19 @@
 	                    <th>숙박인원</th>
 	                    <th>전화번호</th>
 	                    <th>예약상태</th>
-	                    <th></th>
 	                </tr>
 	            </thead>
 	            <tbody>
-	            	<tr>
-	            		<td></td>
-	            		<td></td>
-	            		<td></td>
-	            		<td></td>
-	            		<td></td>
-	            		<td></td>
-	            		<td></td>
+	            	<tr th:each="booking : ${bookingList}">
+	            		<td th:text="${booking.name}">이름</td>
+	            		<td th:text="${#temporals.format(booking.date, 'yyyy년 M월 d일')}"></td>
+	            		<td th:text="${booking.day}"></td>
+	            		<td th:text="${booking.headcount}"></td>
+	            		<td th:text="${booking.phoneNumber}"></td>
+	            		<td th:text="${booking.state}"></td>
+	            		<td>
+	            			<button type="button" class="del btn btn-danger" th:text="'삭제'"></button>
+	            		</td>
 	            	</tr>
 	            </tbody>
 			</table>

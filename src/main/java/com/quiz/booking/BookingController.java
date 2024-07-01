@@ -21,24 +21,28 @@ public class BookingController {
 	//http://localhost:8080/booking/booking-list-view
 	//list view
 	@GetMapping("/booking-list-view")
-	public String bookingListView() {
+	public String bookingListView(Model model) {
+		
+		//db select 해서 list에 담아서 가져오기
+		List<Booking> bookingList = bookingBO.getBooingList();
+		
+		//model에 담기
+		model.addAttribute("bookingList", bookingList);
+		
 		return "booking/bookingList";
 	}
 	
-	public List<Booking> bringBookingList(Model model){
-		
-		return bookingBO.getBooingList();
-	}
-	
+	//http://localhost:8080/booking/make-booking-view
 	//예약페이지 뷰
 	@GetMapping("/make-booking-view")
 	public String makeBookingView() {
 		return "booking/makeBooking";
 	}
 	
+	//http://localhost:8080/booking/check-booking-view
 	//예약확인 페이지뷰
-	@GetMapping("check-booking-view")
+	@GetMapping("/check-booking-view")
 	public String chckBookingView() {
-		return "booking/chickBooking";
+		return "booking/checkBooking";
 	}
 }

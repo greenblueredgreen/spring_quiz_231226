@@ -2,13 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>예약 목록</title>
+    <title>예약하기</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" type="text/css" href="/css/booking/style.css">
+    <!-- datepicker -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    
+	<link rel="stylesheet" type="text/css" href="/css/booking/style.css">
 </head>
 <body>
 	<div id="wrap" class="container">
@@ -23,38 +27,29 @@
 	            <li class="nav-item"><a href="/booking/booking-list-view" class="nav-link text-white font-weight-bold">예약목록</a></li>
 	        </ul>
 	    </nav>
-	    <section class="banner bg-info">
-            <img id="bannerImage" src="/img/test06_banner1.jpg" alt="banner" width="1110" height="500">
-        </section>
-        <section class="reserve bg-primary d-flex">
-            <section class="real-time-reserved col-4 d-flex justify-content-center align-items-center">
-                <div class="display-4 text-white">실시간<br>예약하기</div>
-            </section>
-            <section class="confirm col-4">
-                <div id="memberBox" class="mr-3 pt-3">
-                	<span class="reserve-confirm-text">예약 확인</span>
-                    <div class="d-flex align-items-center justify-content-end mt-3">
-                        <span class="text-white mr-2">이름</span>
-                        <input type="text" id="name" class="form-control col-9">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-end mt-3">
-                        <span class="text-white mr-2">전화번호</span>
-                        <input type="text" id="phoneNumber" class="form-control col-9">
-                    </div>
-
-                    <!-- 버튼 -->
-                    <div class="d-flex justify-content-end mt-3">
-                        <button type="button" id="checkBookingBtn" class="btn btn-success">조회하기</button>
-                    </div>
-                </div>
-            </section>
-            <section class="inquiry col-4 d-flex justify-content-center align-items-center">
-                <div class="text-white">
-                    <h4 class="font-weight-bold">예약문의:</h4>
-                    <h1>010-<br>0000-1111</h1>
-                </div>
-            </section>
-        </section>
+	    <section class="contents py-4">
+	        <h2 class="text-center font-weight-bold m-4">예약 목록 보기</h2>
+	        <div class="d-flex justify-content-center">
+	            <div class="booking-box">
+	                <div class="subject-text my-2 font-weight-bold">이름</div>
+	                <input type="text" class="form-control" id="name">
+	
+	                <div class="subject-text my-2 font-weight-bold">예약날짜</div>
+	                <input type="text" class="form-control" id="date">
+	
+	                <div class="subject-text my-2 font-weight-bold">숙박일수</div>
+	                <input type="text" class="form-control" id="day">
+	
+	                <div class="subject-text my-2 font-weight-bold">숙박인원</div>
+	                <input type="text" class="form-control" id="headcount">
+	
+	                <div class="subject-text my-2 font-weight-bold">전화번호</div>
+	                <input type="text" class="form-control" id="phoneNumber">
+	
+	                <button type="button" id="makeBookingBtn" class="btn btn-warning w-100 mt-3">예약하기</button>
+	            </div>
+			</div>
+	    </section>
 	    <footer>
 	        <small class="text-secondary">
 	            제주특별자치도 제주시 애월읍<br>
@@ -63,5 +58,75 @@
 	        </small>
 	    </footer>
 	</div>
+	
+	<script>
+		$(document).ready(function(){
+			//datepicker
+			$("#date").datepicker({
+				dateFormat : "yy-mm-dd",
+				minDate : 0
+			});
+			
+			$("#makeBookingBtn").on('click', function(){
+				//예약하기
+				//alert("버튼 누름");
+				let name = $("#name").val().trim();
+				let date = $("#date").val().trim();
+				let day =  $("#day").val().trim();
+				let headcount = $("#headcount").val().trim();
+				let phoneNumber = $("#phoneNumber").val().trim();
+				
+				if(!name){
+					alert("이름 입력하시오");
+					return;
+				}
+				if(!date){
+					alert("날짜를 입력하시오");
+					return;
+				}
+				if(!day){
+					alert("숙박일 입력하시오");
+					return;
+				}
+				if(!headcount){
+					alert("인원수 입력하시오");
+					return;
+				}
+				if(!phoneNumber){
+					alert("전화번호 입력하시오");
+					return;
+				}
+				
+				console.log(name);
+				console.log(date);
+				console.log(day);
+				console.log(headcount);
+				console.log(phoneNumber);
+				
+				$a.jax({
+					//request
+					type : "post"
+					, url : "/booking/makeBooking" //현재경로
+					, data : {"name" : name, "date" : date, "day" : day, "headcount" : headcount, "phoneNumber" : phoneNumber}
+					
+					//response
+					, success:function(data){
+						// {"code" : 200,  "result" : 성공}
+						if(data.result == "성공"){
+							alert("예약됨!");
+							//목록으로 이동(리스트화면으로 이동)
+							location.href = "/booking/booking-list-view";
+						}
+					}
+					, error : function(error){
+						alert("예약 실패 ㅠㅠ");
+					}
+				});
+			});
+		});
+		
+
+		
+	</script>
 </body>
 </html>
