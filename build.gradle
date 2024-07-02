@@ -32,6 +32,8 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0' // springboot ver 3.x
 	implementation group: 'org.springframework.boot', name : 'spring-boot-starter-thymeleaf', version: '3.2.5'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
