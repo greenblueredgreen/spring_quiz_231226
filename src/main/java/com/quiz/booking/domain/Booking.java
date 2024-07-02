@@ -15,7 +15,5 @@ public class Booking {
 	private String phoneNumber;
 	private String state;
 	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-
-	
+	private LocalDateTime updatedAt;	
 }
