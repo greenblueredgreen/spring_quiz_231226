@@ -17,4 +17,19 @@ public class BookingBO {
 	public List<Booking> getBooingList(){
 		return bookingMapper.selectBookingList();
 	}
+	
+	// input : name
+	// output :Booking(최신) or null 
+	public Booking getLatestBookingByNamePhoneNumber(String name, String phoneNumber) {
+		//List가 비어있을 경우 : [] null 아님
+		//있을 때 : [booking1, booking2]
+		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+		//if (bookingList.isEmpty()) {
+		//	return null;
+		//}else {
+		//	return bookingList.get(bookingList.size()-1);
+		//}
+		//삼항연산자 사용
+		return bookingList.isEmpty() ? null : bookingList.get(bookingList.size()-1);
+	}
 }

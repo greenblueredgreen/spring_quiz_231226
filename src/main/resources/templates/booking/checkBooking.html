@@ -63,5 +63,24 @@
 	        </small>
 	    </footer>
 	</div>
+	<script>
+	
+		, success:function(data){
+			if(data.code == 500){
+				// {"code" : 200, "result" : {"id" : 3, "name" : "강강강"...}}
+				//예약 없음
+				alert(data.error_message);
+			}else if(data.code == 200){
+				alert("이름 : " + data.result.name 
+						+ "\n날짜 :" + data.result.date
+						+ "\n일수 : " + data.result.day
+						+ "\n인원 : " + data.result.headcount
+						+ "\n상태 : " + data.result.state);
+			}
+		}
+		, error:function(error){
+			alert("조회 실패")
+		}
+	</script>
 </body>
 </html>
