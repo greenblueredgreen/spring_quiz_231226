@@ -1,5 +1,6 @@
 package com.quiz.booking;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quiz.booking.bo.BookingBO;
 import com.quiz.booking.domain.Booking;
@@ -37,11 +39,34 @@ public class BookingController {
 	}
 	
 	//http://localhost:8080/booking/make-booking-view
-	//예약페이지 뷰
+	//예약하기 뷰
 	@GetMapping("/make-booking-view")
 	public String makeBookingView() {
 		return "booking/makeBooking";
 	}
+	
+	// insert 및 ajax 요청 post 페이지
+	//예약 add - ajax  요청
+	@ResponseBody
+	@PostMapping("/make-booking")
+	public Map<String, Object> makeBooking(
+			@RequestParam("name") String name,
+			@RequestParam("date") LocalDate date,
+			@RequestParam("day") int day,
+			@RequestParam("headcount") int headcount,
+			@RequestParam("phoneNumber") String phoneNumber		
+			){
+		
+		//db 삽입
+		bookingBO.addBooking(name, date, day, headcount, phoneNumber);
+		
+		//응답값 AJAX
+		Map<String, Object> result= new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
+		return result;
+	}
+	
 	
 	//http://localhost:8080/booking/check-booking-view
 	//예약확인 페이지뷰

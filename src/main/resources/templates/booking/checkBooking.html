@@ -65,7 +65,43 @@
 	</div>
 	<script>
 	
-		, success:function(data){
+		$(document).ready(function(){
+			$("#checkBookingBtn").on('click', function(){
+				//alert("click");
+				
+				let name = $("#name").val().trim();
+				//alert(name);
+				if(!name){
+					alert("이름을 입력하시오");
+					return;
+				}
+				
+				let phoneNumber = $("#phoneNumber").val().trim();
+				//alert(phoneNumber);
+				if(!phoneNumber){
+					alert("전화번호를 입력하시오");
+					return;
+				}
+				
+				$.ajax({
+					type : "POST"
+					, url : "/booking/check-booking-view"
+					, data : {"name" : name, "url" : url}
+					
+					,success : function(data){
+						if(result.data == "성공"){
+							alert("조회에 성공");
+						}
+					} //success
+					
+					, error : function(error){
+						alert("조회에 실패했습니다.")
+					}
+				}); //ajax
+			}); //btn click
+		}); //document
+	
+		/* , success:function(data){
 			if(data.code == 500){
 				// {"code" : 200, "result" : {"id" : 3, "name" : "강강강"...}}
 				//예약 없음
@@ -80,7 +116,7 @@
 		}
 		, error:function(error){
 			alert("조회 실패")
-		}
+		} */
 	</script>
 </body>
 </html>
