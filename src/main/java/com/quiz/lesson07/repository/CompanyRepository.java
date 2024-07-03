@@ -9,4 +9,5 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity, Integer>
 
 	//save메소드 생략되어 있음
 	// <entity이름, Integer>
+	public CompanyEntity findById(int id);
 }

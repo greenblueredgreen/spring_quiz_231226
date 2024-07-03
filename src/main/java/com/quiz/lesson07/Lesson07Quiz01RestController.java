@@ -45,6 +45,16 @@ public class Lesson07Quiz01RestController {
 	//http://localhost:8080/lesson07/quiz01/update
 	@GetMapping("/update")
 	public CompanyEntity update() {
-		return companyBO.updateCompany(2, "중소기업", 34);
+		//id : 2번, 규모 - 중소기업, 인원수 34
+		//하나의 행을 바로 리턴 -> 응답 내려감 -> json
+		return companyBO.updateCompanyById(2, "중소기업", 34);
+	}
+	
+	//http://localhost:8080/lesson07/quiz01/delete
+	@GetMapping("/delete")
+	public String delete() {
+		companyBO.deleteCompanyById(2);
+		
+		return "삭제 성공";
 	}
 }
