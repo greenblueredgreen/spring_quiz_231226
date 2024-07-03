@@ -17,14 +17,35 @@ public class CompanyBO {
 	public CompanyEntity addCompany(String name, String business, String scale, int headcount) {
 		//input : 4개 파라미터
 		//output : CompanyEntity
-		CompanyEntity company = CompanyEntity.builder()
+		//CompanyEntity company = 
+//				CompanyEntity.builder()
+//				.name(name)
+//				.business(business)
+//				.scale(scale)
+//				.headcount(headcount)
+//				.createdAt(LocalDateTime.now())
+//				.build();
+		//return companyRepository.save(company); //save가 리턴해준다. 
+		return companyRepository.save(
+				CompanyEntity.builder()
 				.name(name)
 				.business(business)
 				.scale(scale)
 				.headcount(headcount)
 				.createdAt(LocalDateTime.now())
-				.build();
-		
-		return companyRepository.save(company);
+				.build());
+	}
+	
+	public CompanyEntity updateCompany(int id, String scale, int headcount) {
+		CompanyEntity company = companyRepository.findById(id).orElse(null);
+		if(company != null) {
+			company = company.toBuilder()
+					.scale(scale)
+					.headcount(headcount)
+					.build();
+			
+			company = companyRepository.save(company);
+		}
+		return company;
 	}
 }
