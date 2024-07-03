@@ -37,30 +37,30 @@ public class CompanyBO {
 				.build());
 	}
 	
-	//input : id, scale, headcount
-	//output : CompanyEntity
-	public CompanyEntity updateCompanyById(int id, String scale, int headcount) {
-		//기존 데이터 조회
-		CompanyEntity company = companyRepository.findById(id).orElse(null);
-		if(company != null) {
-			//null이 아닐 때만 업데이트 하겠다.
-//			company = company.toBuilder()
+//	//input : id, scale, headcount
+//	//output : CompanyEntity
+//	public CompanyEntity updateCompanyById(int id, String scale, int headcount) {
+//		//기존 데이터 조회
+//		CompanyEntity company = companyRepository.findById(id).orElse(null);
+//		if(company != null) {
+//			//null이 아닐 때만 업데이트 하겠다.
+////			company = company.toBuilder()
+////					.scale(scale)
+////					.headcount(headcount)
+////					.build();
+////			company = companyRepository.save(company);
+//			
+//			company = companyRepository.save(company.toBuilder()
 //					.scale(scale)
 //					.headcount(headcount)
-//					.build();
-//			company = companyRepository.save(company);
-			
-			company = companyRepository.save(company.toBuilder()
-					.scale(scale)
-					.headcount(headcount)
-					.build());
-		}
-		return company;
-	}
-	
-	public void deleteCompanyById(int id) {
-		Optional<CompanyEntity> companyOptional = companyRepository.findById(id);
-		//CompanyEntity = s
-		companyOptional.ifPresent(s-> companyRepository.delete(s));
-	}
+//					.build());
+//		}
+//		return company;
+//	}
+//	
+//	public void deleteCompanyById(int id) {
+//		Optional<CompanyEntity> companyOptional = companyRepository.findById(id);
+//		//CompanyEntity = s
+//		companyOptional.ifPresent(s-> companyRepository.delete(s));
+//	}
 }
